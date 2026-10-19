@@ -1,0 +1,356 @@
+/* Site-wide styles. Colours are defined once here and reused everywhere. */
+
+/* Lato font, as on the original site (must stay at the top of the file). */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap");
+
+:root {
+  --text: #1f2933;
+  --muted: #5f6b7a;
+  --accent: #226e93;    /* teal, same as the headings */
+  --bg: #ffffff;
+  --bg-alt: #f4f6f9;
+  --border: #e1e5eb;
+  --heading: #226e93;   /* teal used for titles on the original site */
+  --heading-dark: #212121;
+  --max-width: 90rem;   /* ~1440px */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+}
+
+a {
+  color: var(--accent);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- Header and navigation ---------- */
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.site-header .inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+}
+
+.site-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 400;
+  font-size: 1.15rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-title img {
+  height: 2.2rem;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.1rem;
+}
+
+.site-nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: var(--accent);
+}
+
+/* ---------- Page banner ---------- */
+
+.banner {
+  height: 20rem;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;  /* title vertically centred */
+}
+
+.banner h1 {
+  width: 100%;
+  margin: 0;
+  padding: 1rem;
+  color: #fff;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);  /* shrinks on phones, up to ~72px on desktop */
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+  text-align: center;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);  /* keeps white text readable on light photos */
+}
+
+/* Title + subtitle block (home page) */
+.banner-text {
+  width: 100%;
+}
+
+.banner .subtitle {
+  margin: 0;
+  padding: 0 1rem;
+  color: #fff;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  letter-spacing: 0.5px;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- Main content ---------- */
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem 1rem 3rem;
+}
+
+h2 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--heading);
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-size: 2.2rem;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+h3 {
+  margin-top: 1.25rem;
+  margin-bottom: 0.4rem;
+  color: var(--heading-dark);
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+
+/* Section separator: thin light-grey line, as on the original site. */
+hr {
+  border: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.15);
+  margin: 1.5rem 0;
+}
+
+/* Centred block of text (e.g. "Get in touch" on the home page). */
+.centered {
+  text-align: center;
+}
+
+/* No extra gap between a separator and the title right after it. */
+hr + h2,
+hr + .centered > h2:first-child,
+hr + section > h2:first-child {
+  margin-top: 0;
+}
+
+figure {
+  margin: 1rem 0;
+}
+
+/* Pictures next to text in the narrow column (e.g. Outreach page). */
+.side-by-side.small-image > img {
+  max-width: 20rem;   /* ~320px; change this to resize all outreach pictures */
+}
+
+/* Stand-alone figures (e.g. Research page): limited width, centred. */
+main > figure {
+  max-width: 48rem;   /* ~770px; change this to resize all research figures */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figcaption {
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.credits {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Text next to an image; stacks on narrow screens. */
+.side-by-side {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.side-by-side.small-image {
+  grid-template-columns: 2fr 1fr;
+}
+
+/* Add "flip" to put the picture on the left and the text on the right. */
+.side-by-side.flip > :first-child {
+  order: 2;
+}
+
+.side-by-side.small-image.flip {
+  grid-template-columns: 1fr 2fr;
+}
+
+/* Section title sitting at the top of a text column, right above its text. */
+.side-by-side h2 {
+  margin-top: 0;
+}
+
+/* Picture on the right: align the text (and its title) against the picture. */
+.side-by-side:not(.flip) > div:first-child {
+  text-align: right;
+}
+
+.side-by-side:not(.flip) > div:first-child .links {
+  justify-content: flex-end;
+}
+
+/* ...and push the picture to the left of its column, against the text. */
+.side-by-side:not(.flip) > :last-child {
+  justify-self: start;
+}
+
+.side-by-side:not(.flip) > figure img {
+  margin-left: 0;
+}
+
+.side-by-side:not(.flip) > figure figcaption {
+  text-align: left;
+}
+
+/* Picture on the left: push it to the right of its column, against the text. */
+.side-by-side.flip > :last-child {
+  justify-self: end;
+}
+
+.side-by-side.flip > figure img {
+  margin-right: 0;
+}
+
+.side-by-side.flip > figure figcaption {
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .side-by-side,
+  .side-by-side.small-image,
+  .side-by-side.small-image.flip {
+    grid-template-columns: 1fr;
+  }
+
+  /* On phones, always show the text first, left-aligned. */
+  .side-by-side.flip > :first-child {
+    order: 0;
+  }
+
+  .side-by-side:not(.flip) > div:first-child {
+    text-align: left;
+  }
+
+  .side-by-side:not(.flip) > div:first-child .links {
+    justify-content: flex-start;
+  }
+
+  /* Stacked pictures line up on the left with the text above them. */
+  .side-by-side.flip > :last-child {
+    justify-self: start;
+  }
+
+  .side-by-side.flip > figure img {
+    margin-right: auto;
+    margin-left: 0;
+  }
+
+  .side-by-side.flip > figure figcaption {
+    text-align: left;
+  }
+}
+
+.portrait {
+  border-radius: 0.5rem;
+  max-width: 18rem;      /* ~290px; change this to resize the photo */
+  justify-self: center;  /* centre it in its column */
+}
+
+/* Same size cap for an image inside a <figure> (centred above its caption). */
+.small-photo {
+  display: block;
+  max-width: 18rem;
+  margin: 0 auto;
+}
+
+/* Medium-size image (~530px, as the HERA photo on the original site). */
+.medium-photo {
+  display: block;
+  max-width: 33rem;
+  margin: 0 auto;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 0.3rem;
+  text-decoration: none;
+}
+
+.video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.site-footer .inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem;
+}
